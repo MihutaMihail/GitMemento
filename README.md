@@ -1,91 +1,145 @@
-# GitMemento
+# **Contexte**
+GIT un est outil très utilisé dans le monde professionnel, il est généralement utilisé pour stocker un projet sur un dépôt distant (Gitlab, Github,etc). Pour travailler, on peut utiliser le Git GUI (Graphical User Interface) mais je pense que la version Bash (console) est mieux pour travailler une fois qu'on connait les commandes. Avant de voir les commandes, voici comment GIT fonctionne : <br>
+
+• Il y a trois "stage" dans le GIT (**unstaged** → **stage** → **unmodified**)
+
+**1.** Un nouveau fichier / un fichier modifié va être mis dans le "stage" **UNSTAGED**. <br>
+**2.** Une fois ajouté il passe au "stage" **STAGE**. <br>
+**3.** Une fois qu'on fait un **commit** (on met un message à toutes les modifications effectué) il passe au "stage" **UNMODIFIED**.<br>
+**4.** Maintenant on est prêt de le mettre sur le dépôt distant.
+
+# **Commandes**
+
+Voici quelques commandes qui sont utiliser pour travailler avec GIT :<br>
+
+# Git Status
+### $git status 
+**état de votre dépôt**
+
+# Git Log
+### $git log
+**liste des commit** (code **sha1**, **auteur**, **date**, **nom**)
+### $git log --oneline
+**liste des commit** (affiche que le **nom**) 
+### $git log --all
+**liste des commit** (affiche tous les commit n'importe l'endroid où on est situer)
+### $git log --graph
+**liste des commit** (affiche les commit sous forme d'un simple graphe voir bien visualer les branches)
+
+# Git Init
+### $git init
+**initialisation du dépôt en local**
+
+# Git Add
+### $git add nomFichier
+**ajoute le fichier nomFichier au contrôle de git**
+### $git add .
+**ajoute toutes les fichiers au contrôle de git**
+
+# Git Commit
+### $git commit -m "message"
+**validation des modifications + un message pour décrire les modifications effectué**
+### $git commit -am "message"
+**ajout des fichiers et validations des modifications + message**
+### $git commit -ammend"
+**modifier le dernier message du commit**
+
+
+# Git Branch
+### git branch
+**liste des branche existantes**
+### $git branch nomBranch
+**création d'une nouvelle branche appeller nomBranch**
+### $git branch -D nomBranch
+**supprimer la branche nomBranch**
+
+# Git Checkout
+### $git checkout nomBranch
+**changement de branche sur nomBranch**
+### $git checkout -b nomBranch
+**création de la branche nomBranch + changement de branche sur nomBranch**
+### $git checkout head^
+**on révient en arrière d'une branche**
+### $git checkout head~1 (~2 ~3 ~4 etc)
+**on révient en arrière d'une branche (ou 2, 3 , 4 etc)**
+
+# Git Rm
+### $git rm nomFichier.txt / nomDossier
+**supprimer un fichier / dossier**
+
+# Git Mv
+### $git mv nomfichier.txt nouveauNomFichier.txt
+**rénommer un fichier**
+
+# Git Push
+### $git push
+**les modifications qui ont été validé vont être transmis sur le dépôt distant**
+### $git push https://gitlab.com/portfolio-mihuta-mihail/gitmemento.git
+**si votre remote n'est pas défini ou vous voulez le transmettre sur un autre dépôt il faut mettre le lien du dépôt**
+
+# Git Pull
+### $git pull
+**dans le cas où on travaille dans un groupe et quelqu'un a fait des modifications qui ont été PUSH, il faut faire un PULL pour récupérer ces modifications**
+### $git pull https://gitlab.com/portfolio-mihuta-mihail/gitmemento.git
+**si votre remote n'est pas défini ou vous voulez récupérer les fichiers d'un autre dépôt il faut mettre le lien du dépôt**
+
+# Git Merge
+### $git merge nomBranch
+**On fusionne la branche actuelle et la branche nomBranch (pour récupérer son code). Généralement, un merge va crée un commit supplémentaire**
+
+# Git Rebase
+### $git rebase nomBranch
+**Presque la même chose que $git merge mais utiliser dans d'autres situations (ex : on veut fusionner deux branches mais il y a commit de plus sur l'une des branches. Un merge va crée un commit supplémentaire alors qu'un rebase va prendre ce commit et il va le mettre à la fin de la branche qu'on veut fusionner)**
+### $git rebase -i nomBranch
+**c'est un rebase interactif (on peut modifier un commit, utiliser un commit ou pas, mettre un libellé,etc)**
+
+# Git Stash
+### $git stash
+**toutes les modifications en cours sont mises de côté et stockés dans un espace dédié**
+### $git stash list
+**afficher la liste du stash**
+### $git stash pop
+**récupérer le code du stash (le code est supprimer)**
+### $git stash apply
+**récupérer le code du stash (le code n'est pas supprimer)**
+
+# Git Tag
+### $git tag V1.0
+**Un libellé pour un commit**
+
+# Git Cherry-Pick 
+### $git cherry-pick n° commit
+**déplacer le commit à l'endroit où je me trouve**
+
+# Git Remote 
+### $git remote add origin https://gitlab.com/portfolio-mihuta-mihail/gitmemento.git
+**on ajoute le lien suivant comment remote pour dire que ce dépôt local correspond au dépôt distant ...(lien)**
+
+# Git Reset (annuler un commit avant un PUSH)
+### $git reset --soft head^ 
+**Add → X → Commit**
+### $git reset --mixed head^
+**X → Add → Commit**
+### $git reset --hard head^
+**X → Edit → Add → Commit (tout ligne de code est perdu)**
+
+# Git Revert (annuler un commit après un PUSH)
+### $git revert head
+**On crée un commit avec l'inverse du commit (si le commit a une certaine ligne de code, l'inverse sera que cette ligne n'est plus la). On fait cela puisque le commit a été déjà PUSH et c'est plus facile pour les autres de faire un PULL ensuite**
 
 
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/portfolio-mihuta-mihail/gitmemento.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/integrations/)
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-## Test and Deploy
 
-Use the built-in continuous integration in GitLab.
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://docs.gitlab.com/ee/user/clusters/agent/)
 
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:6d4932925ff3b56d5e323a36f4cf67d1?https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
